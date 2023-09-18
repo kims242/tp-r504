@@ -9,3 +9,6 @@ while True:
 	v2 = int (b)
 	res = f.puissance(v1,v2)
 	print ('v1 élévé à v2 vaut', res),
+
+
+## Test clone
