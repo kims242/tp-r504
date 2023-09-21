@@ -16,7 +16,7 @@ fi
 
 echo n2=$n2
 
-for (( n1=5; n1<=15; n1++ ))
+for (( i=5; i<=$n2; i++ ))
 do
-  echo "hi $n1"
+  echo "$i"
 done 
