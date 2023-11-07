@@ -1,0 +1,4 @@
+TAble staff {
+ id int [pk, not null, increment]
+ first_name vachar [not null]
+} 
