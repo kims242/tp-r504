@@ -1,0 +1,34 @@
+Table marque {
+	id integer [primary key, increment]
+	nom_marque varchar(200) 
+} 
+
+TAble os {
+id integer [pk, increment]
+ nom_os varchar(200) 
+} 
+
+TAble software {
+ id integer [pk, increment] 
+ nom_software varchar(200)
+} 
+
+TAble software_installe {
+	id integer [pk, increment]
+	nom_software varchar(200) 
+} 
+
+TAble PC  {
+ id integer [pk, increment]
+ marque_id varchar(200) 
+ date_achat date
+ ram int
+ user varchar
+ dd_size int
+} 
+
+TAble technicien{
+ id_technicien integer [pk, increment]
+ nom_technicien varchar(200)
+} 
+ 
