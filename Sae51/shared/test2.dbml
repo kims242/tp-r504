@@ -1,6 +1,0 @@
-
-Table marque {
-	id integer [primary key, increment]
-	nom_marque varchar(200) 
-}
-
