@@ -1,9 +1,9 @@
 
 mkdir -p shared
-cp test.dbml shared/
+#cp test.dbml shared/
 
-cp *.dbml
-docker run --rm -it \
+cp *.dbml shared/
+docker run -it \
        --workdir /srv \
        --name Sae51-ub \
        --mount type=bind,source=$(pwd)/shared,target=/srv \
