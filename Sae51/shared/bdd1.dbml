@@ -1,0 +1,42 @@
+Table marque {
+ id_marque int [pk, increment]
+ nom_marque varchar(200)
+}
+
+Table os {
+ id_os int [pk, increment]
+ nom_os varchar(200)
+}
+
+Table software {
+ id_software int [pk, increment]
+ nom_software varchar(200)
+}
+
+Table software_installe {
+ id_software_installe int [pk, increment]
+ nom_software_installe varchar(200)
+}
+
+Table PC {
+ id int [pk, increment]
+ PC_marque int
+ date_achat date
+ user varchar(200)
+ PC_os int
+ PC_software_installe int
+}
+
+Table technicien {
+ id_technicien int [pk, increment]
+ nom_technicien varchar(200)
+ PC_technicien int 
+ date_maintenance date
+}
+
+
+ref: PC.PC_os > os.id_os
+ref: PC.PC_marque > marque.id_marque
+ref: PC.PC_software_installe > software_installe.id_software_installe
+ref: software_installe.nom_software_installe > software.id_software
+ref: technicien.PC_technicien > PC.id
