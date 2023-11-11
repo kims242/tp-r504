@@ -1,25 +1,25 @@
 Table marque {
- id_marque int [pk, increment]
+ id_marque int [primary key, increment]
  nom_marque varchar(200)
 }
 
 Table os {
- id_os int [pk, increment]
+ id_os int [primary key, increment]
  nom_os varchar(200)
 }
 
 Table software {
- id_software int [pk, increment]
+ id_software int [primary key, increment]
  nom_software varchar(200)
 }
 
 Table software_installe {
- id_software_installe int [pk, increment]
+ id_software_installe int [primary key, increment]
  nom_software_installe varchar(200)
 }
 
 Table PC {
- id int [pk, increment]
+ id int [primary key, increment]
  PC_marque int
  date_achat date
  user varchar(200)
@@ -28,7 +28,7 @@ Table PC {
 }
 
 Table technicien {
- id_technicien int [pk, increment]
+ id_technicien int [primary key, increment]
  nom_technicien varchar(200)
  PC_technicien int 
  date_maintenance date

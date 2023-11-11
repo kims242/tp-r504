@@ -5,5 +5,5 @@ RUN npm --version
 RUN npm install -g @dbml/cli
 RUN nodejs --version
 RUN npm install -g @softwaretechnik/dbml-renderer
-WORKDIR srv/
-CMD srv/dbml2sql.sh
+#WORKDIR srv/
+CMD /srv/dbml2sql.sh
