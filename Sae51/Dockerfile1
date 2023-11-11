@@ -1,0 +1,10 @@
+FROM mariadb:latest
+
+#Exposition du port
+EXPOSE 3307
+
+#Mot de passe
+ENV MARIADB_ROOT_PASSWORD=root
+
+COPY init.sql /docker-entrypoint-initdb.d/
+COPY my.cnf /etc/mysql/
