@@ -1,2 +1,2 @@
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
-FLUSH PRIVILEGES;
+#ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+#FLUSH PRIVILEGES;
