@@ -10,6 +10,9 @@ RUN apk add php-apache2 php-pdo_mysql php-curl php-gd php-xml php-mbstring
 
 EXPOSE 80
 
-COPY conf.php /var/www/html/dolibarr/htdocs/conf/conf.php
+COPY conf.php /var/www/html/conf/conf.php
+COPY php.ini /etc/php8/apache2/php.ini
+RUN chmod 777 /etc/php8/apache2/php.ini
+COPY step2.php /var/www/html/install/step2.php
 
 
