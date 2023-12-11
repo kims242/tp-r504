@@ -1,2 +1,17 @@
-CREATE USER 'dolibarr'@'localhost' IDENTIFIED  BY 'root';
 CREATE DATABASE IF NOT EXISTS dolibarr; USE dolibarr;
+
+CREATE TABLE llx_societe (
+  id_societe INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(128) DEFAULT NULL,
+  name_alias VARCHAR(128) DEFAULT NULL,
+  code_client VARCHAR(24) DEFAULT NULL,
+  code_fournisseur VARCHAR(24) DEFAULT NULL,
+  code_compta VARCHAR(24) DEFAULT NULL,
+  code_compta_fournisseur VARCHAR(24) DEFAULT NULL,
+  addres_societe VARCHAR(255) DEFAULT NULL,
+  town VARCHAR(50) DEFAULT NULL,
+  phone VARCHAR(20) DEFAULT NULL,
+  fax VARCHAR(20) DEFAULT NULL,
+  url_societe VARCHAR(255) DEFAULT NULL,
+  email VARCHAR(128)
+);

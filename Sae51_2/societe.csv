@@ -1,0 +1,4 @@
+nom,name_alias,code_client,code_fournisseur,code_compta,code_compta_fournisseur,addres_societe,town,phone,fax,url_societe,email
+FCA Broadcast Solutions,Alias A,C123,F456,C789,F123,123 Main St,Brazzaville,123-456-7890,123-456-7891,http://www.fca.cg,email@example.com
+Proud us Drip,Alias B,C124,F457,C790,F124,456 Oak St,Paris,987-654-3210,987-654-3211,http://www.proudus.com,email@example.net
+CKALI,Alias C,C125,F458,C791,F125,789 Pine St,Maroc,555-123-4567,555-123-4568,http://www.ckali.fr,email@example.org
