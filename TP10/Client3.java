@@ -6,45 +6,81 @@ import org.apache.http.impl.client.*;
 import javax.json.*;
 
 public class Client3 {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        try (CloseableHttpClient client = HttpClients.createDefault()) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-		
-//		System.exit(1);
+            while (true) {
+                System.out.print("Entrez le titre du film (ou 'stop' pour quitter) : ");
+                String filmTitle = reader.readLine();
 
-		CloseableHttpClient client = HttpClients.createDefault();
-		String url = "http://" + args[0];
-		HttpGet request = new HttpGet(url);
-		
-		System.out.println( "Executing request " + request.getRequestLine() );
+                if ("stop".equalsIgnoreCase(filmTitle)) {
+                    System.out.println("Fin du programme");
+                    break;
+                }
 
-		try {
-		CloseableHttpResponse resp = client.execute(request);
+                String apiUrl = "http://www.omdbapi.com/?apikey=751ea6aa&t=" + filmTitle;
 
-		System.out.println( "Response Line: " + resp.getStatusLine() );
-		System.out.println( "Response Code: " + resp.getStatusLine().getStatusCode() );
+                HttpGet request = new HttpGet(apiUrl);
 
-		InputStreamReader isr = new InputStreamReader( resp.getEntity().getContent() );
+                try (CloseableHttpResponse response = client.execute(request)) {
+                    if (response.getStatusLine().getStatusCode() == 200) {
+                        InputStreamReader isr = new InputStreamReader(response.getEntity().getContent());
 
-		JsonReader reader = Json.createReader(isr);
-		JsonObject jsonObject = reader.readObject();
+                        JsonReader jsonReader = Json.createReader(isr);
+                        JsonObject jsonObject = jsonReader.readObject();
+                        jsonReader.close();
+                        isr.close();
 
-		reader.close();
-		isr.close();
+                        // Afficher les informations essentielles
+                        System.out.println("Date de sortie : " + jsonObject.getString("Released"));
+                        System.out.println("Acteurs principaux : " + jsonObject.getString("Actors"));
+						System.out.println( "duree=" + jsonObject.getString("Runtime"));
+						System.out.println("Genre : " + jsonObject.getString("Genre"));
 
-		System.out.println( "duree=" + jsonObject.getString("Runtime") );
+                        // Récupérer le tableau des critiques
+                        JsonArray ratingsArray = jsonObject.getJsonArray("Ratings");
 
-		JSonArray tab = obj.getJsonArray( ...
-	for( int i=0; i<tab.size(); i++ )
-	{
-	JsonObject ji = // chercher dans la doc Java comment recuperer un objet Json dans un tableau
-	...
-	}	
+                        // Chercher le score de "Rotten Tomatoes"
+                        String rottenTomatoesScore = null;
+                        for (JsonValue rating : ratingsArray) {
+                            JsonObject ratingObject = (JsonObject) rating;
+                            if ("Rotten Tomatoes".equals(ratingObject.getString("Source"))) {
+                                rottenTomatoesScore = ratingObject.getString("Value");
+                                break;
+                            }
+                        }
 
+                        // Ajouter la mention en fonction du score
+                        if (rottenTomatoesScore != null) {
+                            int score = Integer.parseInt(rottenTomatoesScore.replaceAll("[^\\d]", ""));
+                            String mention;
 
+                            if (score < 20) {
+                                mention = "Nul";
+                            } else if (score >= 20 && score < 50) {
+                                mention = "Bof";
+                            } else if (score >= 50 && score < 70) {
+                                mention = "Bien";
+                            } else {
+                                mention = "Très bien";
+                            }
 
-		} catch (IOException ex) {
-			System.out.println("Error");
-			ex.printStackTrace();
-		  }
-	}
+                            System.out.println("Score Rotten Tomatoes : " + rottenTomatoesScore);
+                            System.out.println("Mention : " + mention);
+                        } else {
+                            System.out.println("Score Rotten Tomatoes non trouvé.");
+                        }
+                    } else {
+                        System.out.println("Erreur HTTP : " + response.getStatusLine().getStatusCode());
+                    }
+                } catch (IOException ex) {
+                    System.out.println("Erreur lors de l'exécution de la requête HTTP.");
+                    ex.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
