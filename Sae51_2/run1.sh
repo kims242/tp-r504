@@ -1,4 +1,4 @@
-sudo docker run --rm  -d \
+docker run --rm  -d \
 	--name dolibarr_aa \
     -p 80:80 \
 	--env DOLI_DB_TYPE=mysqli \

@@ -1,6 +1,6 @@
 mkdir -p shared/csv
 
-docker run --rm -d \
+sudo docker run --rm -d \
    --name mysql_aa \
    --network sae \
    --env MYSQL_ROOT_PASSWORD=root \
