@@ -11,7 +11,7 @@ public class Client3 {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
             while (true) {
-                System.out.print("Entrez le titre du film (ou 'stop' pour quitter) : ");
+                System.out.print("Entrez le titre du film (ou 'Fin' pour quitter) : ");
                 String filmTitle = reader.readLine();
 
                 if ("stop".equalsIgnoreCase(filmTitle)) {
