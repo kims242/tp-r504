@@ -17,7 +17,7 @@ if [ -n "$image_url" ]; then
     wget -q -O xkcd_strip.png "$image_url"
 
     # Afficher l'image avec xdg-open
-	xdg-open xkcd_strip.png
+	eog xkcd_strip.png
 
 else
     echo "Impossible de trouver l'URL de l'image pour le strip xkcd $strip_number."
