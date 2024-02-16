@@ -48,7 +48,13 @@ int main( int argc, const char** argv )
 	}
 
 // File Descriptor
-	int fd = STDOUT_FILENO;
+	const char *filename = "mylogfile";
+	int fd = open( filename, O_WRONLY | O_APPEND | O_CREAT, 0644 );
+	if( fd == -1 )
+	{
+	printf( "Error opening file\n" );
+	return 2;
+	}
 
 // Write data to the file
 	const char lf[]   = "\n";
@@ -56,7 +62,15 @@ int main( int argc, const char** argv )
 	f_write( fd, tmpbuf );
 	f_write( fd, dash );
 	f_write( fd, argv[1] );
-	f_write( fd, lf );		
+	f_write( fd, lf );	
+
+// Code de fermeture du fichier
+
+	if( close(fd) == -1 ) // Close the file
+	{
+	printf( "Error closing file\n" );
+	return 4;
+	}	
 	
 	return 0; // everything was fine
 }
